@@ -176,7 +176,7 @@ def game(bombs):
                     for i in lst_sqr:
                         for j in i:
                             r = pygame.rect.Rect(pygame.mouse.get_pos(), (1, 1))
-                            if j.rect.colliderect(r):
+                            if j.rect.colliderect(r) and j.visible == False:
                                 j.flag = not j.flag
         for i in lst_sqr:
             for j in i:
