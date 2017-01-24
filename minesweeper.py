@@ -48,11 +48,6 @@ def initial_board(num_bomb): #create the initial board
     board = check_near_bomb(create_bomb(make_board(), num_bomb))
     return board
 
-#def print_board(b):
-#    for i in b:
-#        print(i)
-
-
 class Board:
     'Fields: board'
     def __init__(self, board):
@@ -182,10 +177,7 @@ def game(bombs):
                         for j in i:
                             r = pygame.rect.Rect(pygame.mouse.get_pos(), (1, 1))
                             if j.rect.colliderect(r):
-                                if j.flag == False: # if no flag, add flag
-                                    j.flag = True
-                                elif j.flag == True:# if flag, remove flag
-                                    j.flag = False
+                                j.flag = not j.flag
         for i in lst_sqr:
             for j in i:
                 if j.visible == True:
@@ -200,8 +192,7 @@ def game(bombs):
             for j in i:
                 if j.visible == True and j.val != 9:                    
                     count += 1
-            if count == 20 * 20 - bombs and bombs != 400: # if there are no more
-                # empty tiles
+            if count == 20 * 20 - bombs and bombs != 400: # if there are no more empty tiles
                 running = False
                 print("Congratulations!")
         pygame.display.update()
